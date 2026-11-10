@@ -1,0 +1,19 @@
+{
+  "name": "turn-notify",
+  "version": "1.0.0",
+  "homepage": "https://github.com/Gongkddz/claude-turn-notify#readme",
+  "repository": "https://github.com/Gongkddz/claude-turn-notify",
+  "description": "Windows toast notification and sound when Claude finishes a reply, showing a snippet of the final answer.",
+  "author": {
+    "name": "止峰"
+  },
+  "license": "MIT",
+  "keywords": [
+    "notifications",
+    "claude-code",
+    "windows",
+    "toast",
+    "hooks",
+    "productivity"
+  ]
+}

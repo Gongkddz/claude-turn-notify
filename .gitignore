@@ -1,0 +1,12 @@
+*.log
+Thumbs.db
+.DS_Store
+dist/
+.local/
+.env
+.env.*
+*.pem
+*.key
+node_modules/
+.venv/
+__pycache__/

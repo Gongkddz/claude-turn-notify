@@ -1,0 +1,15 @@
+{
+  "name": "claude-turn-notify",
+  "description": "Native Windows answer notifications for Claude Code. Toast previews, system sound, and agent-friendly installation.",
+  "owner": {
+    "name": "止峰"
+  },
+  "plugins": [
+    {
+      "name": "turn-notify",
+      "source": "./plugins/turn-notify",
+      "description": "Windows toast notification and sound when Claude finishes a reply, showing a snippet of the final answer.",
+      "version": "1.0.0"
+    }
+  ]
+}

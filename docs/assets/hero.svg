@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="620" viewBox="0 0 1440 620" role="img" aria-labelledby="title desc">
+  <title id="title">turn-notify — Step away. Know when Claude is done.</title>
+  <desc id="desc">A dark blue product illustration with a terminal and a sample Windows notification. Illustrative preview, not a screenshot.</desc>
+  <defs>
+    <linearGradient id="bg" x2="1" y2="1"><stop stop-color="#101c30"/><stop offset="1" stop-color="#09101f"/></linearGradient>
+    <radialGradient id="glow"><stop stop-color="#287f87" stop-opacity=".24"/><stop offset="1" stop-color="#287f87" stop-opacity="0"/></radialGradient>
+    <linearGradient id="card" x2="1" y2="1"><stop stop-color="#24344a"/><stop offset="1" stop-color="#162437"/></linearGradient>
+  </defs>
+  <rect width="1440" height="620" rx="26" fill="url(#bg)"/>
+  <ellipse cx="1120" cy="280" rx="430" ry="380" fill="url(#glow)"/>
+  <g stroke="#506881" stroke-opacity=".10"><path d="M800 0V620M920 0V620M1040 0V620M1160 0V620M1280 0V620M1400 0V620M720 100H1440M720 220H1440M720 340H1440M720 460H1440M720 580H1440"/></g>
+  <g font-family="Segoe UI,Arial,sans-serif">
+    <rect x="72" y="67" width="40" height="40" rx="12" fill="#3bd3b0"/>
+    <g transform="translate(80 74)" stroke="#102d34" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19h16l-2-4v-5a6 6 0 0 0-12 0v5z"/><path d="M10 23h4M12 2v2"/></g>
+    <text x="128" y="96" fill="#edf3fc" font-size="25" font-weight="650" letter-spacing=".5">turn-notify</text>
+    <text x="72" y="183" fill="#4bd5b8" font-size="14" font-weight="600" letter-spacing="3">A LITTLE SIGNAL. MORE ROOM TO FOCUS.</text>
+    <text x="68" y="269" fill="#f3f6fc" font-size="70" font-weight="700" letter-spacing="-2.5">Step away.</text>
+    <text x="70" y="346" fill="#f3f6fc" font-size="58" font-weight="650" letter-spacing="-2">Know when</text>
+    <text x="70" y="414" fill="#f3f6fc" font-size="58" font-weight="650" letter-spacing="-2">Claude is done.</text>
+    <text x="73" y="468" fill="#99adc5" font-size="21">A desktop toast. An answer preview. A familiar sound.</text>
+    <g font-size="13" font-weight="600" letter-spacing="1"><rect x="73" y="517" width="105" height="30" rx="15" fill="#20384a"/><text x="92" y="537" fill="#78d8c4">WINDOWS</text><rect x="188" y="517" width="134" height="30" rx="15" fill="#29313e"/><text x="206" y="537" fill="#deb69c">CLAUDE CODE</text><rect x="332" y="517" width="98" height="30" rx="15" fill="#202e42"/><text x="351" y="537" fill="#a9bad2">MIT / OSS</text></g>
+    <rect x="790" y="123" width="566" height="306" rx="16" fill="#050b15" opacity=".30"/>
+    <rect x="778" y="109" width="566" height="306" rx="16" fill="#111e2f" stroke="#324258"/>
+    <path d="M779 154H1343" stroke="#2c3c52"/>
+    <circle cx="800" cy="132" r="5" fill="#d49382"/><circle cx="818" cy="132" r="5" fill="#d3b37a"/><circle cx="836" cy="132" r="5" fill="#79bfa5"/>
+    <text x="875" y="137" fill="#92a4bb" font-size="13">Claude Code</text>
+    <g font-family="Cascadia Code,Consolas,monospace" font-size="16"><text x="809" y="195" fill="#d3aa8d">&gt; Build something. Keep your flow.</text><text x="809" y="238" fill="#71869e">Reviewing the final changes...</text><text x="809" y="278" fill="#66d8ba">✓ All done. Your changes are ready.</text><text x="809" y="319" fill="#63768d">_</text></g>
+    <path d="M1021 347v40" fill="none" stroke="#4bd5b8" stroke-width="2" stroke-dasharray="4 6"/>
+    <rect x="862" y="397" width="470" height="151" rx="18" fill="#000" opacity=".18"/>
+    <rect x="850" y="383" width="470" height="151" rx="18" fill="url(#card)" stroke="#456078"/>
+    <rect x="873" y="405" width="29" height="29" rx="9" fill="#3bd3b0"/>
+    <path d="M881 424h13l-2-3v-4a4 4 0 0 0-9 0v4z" stroke="#153f43" fill="none" stroke-width="1.6"/>
+    <text x="915" y="425" fill="#c5d3e5" font-size="15" font-weight="600">Claude Code</text>
+    <text x="1245" y="424" fill="#8ca1b8" font-size="12">now</text>
+    <text x="875" y="468" fill="#f0f5fc" font-size="22" font-weight="600">Your reply is ready.</text>
+    <text x="875" y="503" fill="#adbed3" font-size="17">All done. Your changes are ready to review.</text>
+    <text x="1061" y="574" fill="#6f869f" font-size="11" letter-spacing="1.5">ILLUSTRATIVE NOTIFICATION PREVIEW</text>
+  </g>
+</svg>
