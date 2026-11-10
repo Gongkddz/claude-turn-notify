@@ -5,7 +5,9 @@
 Repository: https://github.com/Gongkddz/claude-turn-notify
 Agent instructions: https://raw.githubusercontent.com/Gongkddz/claude-turn-notify/main/AGENTS.md
 Install guide: https://raw.githubusercontent.com/Gongkddz/claude-turn-notify/main/docs/INSTALL.md
-English overview: https://raw.githubusercontent.com/Gongkddz/claude-turn-notify/main/docs/README.en.md
+English overview (default): https://raw.githubusercontent.com/Gongkddz/claude-turn-notify/main/README.md
+Simplified Chinese overview: https://raw.githubusercontent.com/Gongkddz/claude-turn-notify/main/README.zh-CN.md
+Simplified Chinese install guide: https://raw.githubusercontent.com/Gongkddz/claude-turn-notify/main/docs/INSTALL.zh-CN.md
 Marketplace: https://raw.githubusercontent.com/Gongkddz/claude-turn-notify/main/.claude-plugin/marketplace.json
 Plugin: https://raw.githubusercontent.com/Gongkddz/claude-turn-notify/main/plugins/turn-notify/.claude-plugin/plugin.json
 Latest release: https://github.com/Gongkddz/claude-turn-notify/releases/latest
@@ -18,3 +20,5 @@ Verify: claude plugin list --json
 Open a NEW session; run /turn-notify:status and /turn-notify:test.
 Commands: /turn-notify:on, /turn-notify:off, /turn-notify:status, /turn-notify:test, /turn-notify:help.
 The hook makes no network requests. Previews may persist in local pending files and Windows history. Registration is distinct from visible desktop delivery.
+
+Explain installation and usage in the user's preferred language.

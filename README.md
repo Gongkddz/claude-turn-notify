@@ -1,4 +1,3 @@
-
 <p align="center"><img src="docs/assets/hero.svg" alt="turn-notify — Step away. Know when Claude is done." width="100%"></p>
 
 <p align="center">
@@ -8,106 +7,110 @@
   <img alt="Claude Code plugin" src="https://img.shields.io/badge/Claude_Code-plugin-d59a79?style=flat-square">
 </p>
 
-<p align="center"><strong>Claude 回答完，桌面提醒你。</strong><br>原生 Windows 通知 · 回答摘要 · 系统提示音 · 本地运行</p>
+<p align="center"><strong>Step away. Know when Claude is done.</strong><br>Native Windows notifications · Answer previews · System sound · Local execution</p>
 
 <p align="center">
-  <a href="#让-agent-帮你装">让 agent 帮你装</a> ·
-  <a href="https://github.com/Gongkddz/claude-turn-notify/releases/latest">下载安装包</a> ·
-  <a href="docs/INSTALL.md">安装指南</a> ·
-  <a href="docs/README.en.md">English</a> ·
+  <strong>English</strong> · <a href="README.zh-CN.md">简体中文</a>
+</p>
+
+<p align="center">
+  <a href="#ask-your-agent-to-install">Ask your agent to install</a> ·
+  <a href="https://github.com/Gongkddz/claude-turn-notify/releases/latest">Download</a> ·
+  <a href="docs/INSTALL.md">Installation guide</a> ·
   <a href="AGENTS.md">For agents</a>
 </p>
 
 ---
 
-等待 Claude Code 完成任务时，可以切去做别的事。`turn-notify` 会在回答结束约 3 秒后播放提示音，并在 Windows 通知中显示一小段回答。它使用 Claude Code 原生插件系统安装，无需手动编辑 hook 或复制配置。
+Switch to something else while Claude Code works. `turn-notify` plays a system sound and sends a Windows toast with a short answer preview about three seconds after a reply ends. It installs through Claude Code's native plugin system, with no manual hook configuration.
 
-## 让 agent 帮你装
+## Ask your agent to install
 
-把下面这段话发给**运行在你 Windows 电脑上、有终端权限的 agent**：
+Send this to an **agent running on your Windows computer with terminal access**:
 
 ```text
-请帮我安装 https://github.com/Gongkddz/claude-turn-notify
-先阅读仓库的 AGENTS.md，检查环境，用 Claude Code 原生插件方式安装，
-验证安装结果，然后用中文教我开启、关闭和测试通知。
+Install https://github.com/Gongkddz/claude-turn-notify for me.
+Read AGENTS.md, check requirements, install through Claude Code's native plugin
+system, verify installation, and explain how to enable, mute, and test notifications
+in my preferred language.
 ```
 
-Agent 可以读取 [AGENTS.md](AGENTS.md)、[纯文本入口 llms.txt](llms.txt) 和[安装指南](docs/INSTALL.md)，检查系统、执行安装、核对结果并说明用法。网页聊天里的 agent 如果不能操作本机，仍需要在你的电脑上执行安装命令。
+The agent can follow [AGENTS.md](AGENTS.md), the [plain-text llms.txt map](llms.txt) and the [installation guide](docs/INSTALL.md) to check the environment, install the plugin, verify registration and explain the controls. An agent without local terminal access will need a way to run the commands on your computer.
 
 <details>
-<summary><strong>想自己安装？复制这两条命令。</strong></summary>
+<summary><strong>Prefer to install it yourself? Copy these two commands.</strong></summary>
 
-在 PowerShell 中运行：
+Run in PowerShell:
 
 ```powershell
 claude plugin marketplace add Gongkddz/claude-turn-notify
 claude plugin install turn-notify@claude-turn-notify --scope user
 ```
 
-随后打开一个**新的 Claude Code 会话**。运行 `/turn-notify:status` 查看开关，再运行 `/turn-notify:test` 测试桌面通知。
+Open a **new Claude Code session**. Run `/turn-notify:status`, then `/turn-notify:test` to check the notification.
 
 </details>
 
-## 下载后直接安装
+## Download and install
 
-**[下载 Windows 安装包 ZIP →](https://github.com/Gongkddz/claude-turn-notify/releases/latest/download/claude-turn-notify-1.0.0-windows.zip)**
+**[Download the Windows ZIP →](https://github.com/Gongkddz/claude-turn-notify/releases/latest/download/claude-turn-notify-1.0.0-windows.zip)**
 
-完整解压 ZIP，双击 `install.cmd`，再打开新的 Claude Code 会话。安装包内包含完整插件、安装脚本和说明；使用系统自带 PowerShell，无需编译、额外 Python/Node 运行库或管理员权限。**电脑需已安装 Claude Code CLI**。
+Extract the entire ZIP, double-click `install.cmd`, then open a new Claude Code session. The bundle includes the complete plugin, installer and documentation. It uses Windows PowerShell and needs no compilation, additional Node/Python runtime or administrator access. **Claude Code CLI must already be installed.**
 
-安装器将本地市场保存在 `%LOCALAPPDATA%\ClaudeTurnNotify\marketplace\1.0.0`，安装后可移除下载和解压目录。下载和 GitHub 安装需要联网，通知脚本本身不联网。已有同名市场时，安装器保留来源检查；切换来源见[安装指南](docs/INSTALL.md#切换安装来源)。
+The installer keeps a durable marketplace at `%LOCALAPPDATA%\ClaudeTurnNotify\marketplace\1.0.0`, so you can remove the downloaded ZIP and extracted folder afterward. Downloads and GitHub installation need network access; the notification script itself makes no network requests. To change an existing marketplace source, follow [Switch installation source](docs/INSTALL.md#switch-installation-source).
 
-## 小功能，刚刚好
+## Small details that keep you in flow
 
-| 能力 | 具体行为 |
+| Feature | Behavior |
 | :--- | :--- |
-| 桌面通知 | 显示 Claude Code 和最后回答的摘要 |
-| 听得见的提醒 | Windows 自带提示音；Toast 本身静音，避免重复播放 |
-| 适度的摘要 | 清理常见 Markdown，最多约 90 个字符 |
-| 合并连续触发 | 同一会话 3 秒内连续 Stop 保留最后一次，会话间独立 |
-| 随时静音 | 开关保存在本机，后续会话继续沿用 |
-| Agent 友好 | 标准市场清单、明确操作步骤、纯文本入口、内置帮助 |
+| Desktop notification | Shows Claude Code and a preview of its last answer |
+| Familiar sound | Uses the Windows notification sound; the toast itself stays silent to avoid double playback |
+| Short preview | Cleans common Markdown and keeps up to about 90 characters |
+| Fewer interruptions | Merges rapid Stop events within three seconds per session; separate sessions stay independent |
+| Persistent mute | Remembers the local on/off switch across sessions |
+| Agent-ready installation | Standard marketplace manifest, explicit runbook, plain-text entry point and in-plugin help |
 
-## 五个命令
+## Five commands
 
-| 在 Claude Code 中输入 | 作用 |
+| In Claude Code | Action |
 | :--- | :--- |
-| `/turn-notify:on` | 开启通知 |
-| `/turn-notify:off` | 关闭通知 |
-| `/turn-notify:status` | 查看通知开关 |
-| `/turn-notify:test` | 发送示例通知并播放提示音，遵循当前开关 |
-| `/turn-notify:help` | 使用说明、更新、卸载和故障排查 |
+| `/turn-notify:on` | Enable notifications |
+| `/turn-notify:off` | Mute notifications |
+| `/turn-notify:status` | Read the saved switch |
+| `/turn-notify:test` | Send a sample toast and sound if enabled |
+| `/turn-notify:help` | Usage, updates, uninstall and troubleshooting |
 
-## 环境与隐私
+## Requirements and privacy
 
-- **原生 Windows 10 / 11、Windows PowerShell 5.1、支持插件的 Claude Code 2.x。** 本次在 Windows 和 Claude Code 2.1.319 上完成安装与脚本验证。Windows 10 的实际显示及其他 CLI 版本仍需对应环境验证。
-- 需要交互式 Windows 桌面；WSL、macOS、Linux、无桌面服务器不在支持范围内。
-- 通知权限、勿扰模式/专注助手、音量和输出设备会影响显示与声音。系统控制通知位置与历史记录，安装成功不代表桌面已显示通知。
-- 通知脚本不发送网络请求，无遥测。安装与更新由 Claude Code/GitHub 完成，沿用其网络行为。
-- 数据目录为 `%USERPROFILE%\.claude\turn-notify\`；设置 `CLAUDE_CONFIG_DIR` 时使用其下的 `turn-notify`。包含 `state.txt` 开关、`notify.log` 滚动日志（约 1 MB 后轮换一次）和每个会话的 `pending-*.txt`。
-- **摘要会保存在本地 pending 文件，也可能出现在锁屏和 Windows 通知历史中。** 日志只记技术状态，不记录回答正文、会话路径或 ID。缺少有效会话来源时使用通用提示。
+- **Native Windows 10/11, Windows PowerShell 5.1 and plugin-capable Claude Code 2.x.** Installation and scripts were verified on Windows 11 with Claude Code 2.1.319. Windows 10 display and other CLI versions require separate validation.
+- An interactive Windows desktop is required. WSL, macOS, Linux and headless sessions are unsupported.
+- Windows notification permissions, Do not disturb / Focus assist, volume and output devices affect delivery. Windows controls placement and history; successful installation does not prove a toast was visible.
+- The notification script has no telemetry or network requests. Installation and updates use Claude Code/GitHub networking.
+- Data lives in `%USERPROFILE%\.claude\turn-notify\`, or under `turn-notify` inside `CLAUDE_CONFIG_DIR` when set: `state.txt`, a rolling `notify.log` (rotated after about 1 MB) and per-session `pending-*.txt` files.
+- **Answer previews remain in local pending files and may appear on the lock screen and in notification history.** Logs record technical events without answer text, transcript paths or session IDs. Without a valid current-session source, the plugin uses a generic completion message.
 
-## 更新与卸载
+## Update and uninstall
 
-GitHub 安装：
+For a GitHub installation:
 
 ```powershell
 claude plugin marketplace update claude-turn-notify
 claude plugin update turn-notify@claude-turn-notify
 ```
 
-ZIP 安装：下载新版本并运行安装器，按[切换来源说明](docs/INSTALL.md#切换安装来源)更新本地市场。更新后打开新会话。
+For a ZIP installation, download the new version and follow [Switch installation source](docs/INSTALL.md#switch-installation-source) to register its local marketplace. Open a new session after updating.
 
-卸载用户级插件：
+Uninstall a user-scope installation:
 
 ```powershell
 claude plugin uninstall turn-notify@claude-turn-notify --scope user
 ```
 
-卸载不会自动删除通知数据目录。项目级安装需匹配 `--scope project` 或 `--scope local`。
+Notification data is not automatically deleted. Project/local installations need the matching `--scope project` or `--scope local`.
 
-## 开发与打包
+## Development and packaging
 
-项目由 PowerShell 脚本与插件清单组成，没有第三方运行库。克隆后执行：
+The project consists of PowerShell scripts and plugin manifests with no third-party runtime libraries. After cloning, run:
 
 ```powershell
 claude plugin validate .
@@ -115,8 +118,8 @@ claude plugin validate ./plugins/turn-notify
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File ./scripts/build-release.ps1
 ```
 
-安装包和 SHA-256 校验文件生成在 `dist/`，不进入源码仓库。打包显式选择分发文件并保留隐藏的 `.claude-plugin`。通知逻辑见 [turn-notify.ps1](plugins/turn-notify/scripts/turn-notify.ps1)，协作见 [CONTRIBUTING.md](CONTRIBUTING.md)。
+The ZIP and SHA-256 checksums go to ignored `dist/`. Packaging selects distribution inputs explicitly and preserves hidden `.claude-plugin` directories. See [turn-notify.ps1](plugins/turn-notify/scripts/turn-notify.ps1) for the hook and [CONTRIBUTING.md](CONTRIBUTING.md) for maintenance guidance.
 
-## 许可与致谢
+## License and acknowledgments
 
-原创代码按 [MIT](LICENSE) 开源。使用 [Claude Code 插件与市场接口](https://code.claude.com/docs/en/plugin-marketplaces)、[Stop hook](https://code.claude.com/docs/en/hooks#stop)及 Windows 通知和声音 API，详见[第三方说明](THIRD_PARTY_NOTICES.md)。这是独立社区项目。
+Original code and artwork are [MIT licensed](LICENSE). The project uses [Claude Code's plugin marketplace](https://code.claude.com/docs/en/plugin-marketplaces), the [Stop hook](https://code.claude.com/docs/en/hooks#stop) and Windows notification/sound APIs. See [third-party notices](THIRD_PARTY_NOTICES.md). This is an independent community project.

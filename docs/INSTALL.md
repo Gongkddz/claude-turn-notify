@@ -1,12 +1,14 @@
-# 安装与排障 / Installation runbook
+# Installation and troubleshooting
 
-## 前提
+[English](INSTALL.md) · [简体中文](INSTALL.zh-CN.md) · [Project home](../README.md)
 
-原生 Windows 10/11、Windows PowerShell 5.1、支持插件的 Claude Code CLI、交互式桌面。检查 `claude --version` 和 `powershell.exe -NoProfile -Command '$PSVersionTable.PSVersion'`。WSL、macOS、Linux、无桌面服务器不适用。
+## Requirements
 
-[Claude Code 官方安装](https://code.claude.com/docs/en/setup)。本插件无需额外 Node/Python 运行库或管理员权限。GitHub 来源需要网络及 CLI 可用的 Git 环境；ZIP 提供本地市场。组织策略可能限制第三方插件，不应绕过。
+Native Windows 10/11, Windows PowerShell 5.1, plugin-capable Claude Code CLI and an interactive desktop. Check `claude --version` and `powershell.exe -NoProfile -Command '$PSVersionTable.PSVersion'`. WSL, macOS, Linux and headless servers are unsupported.
 
-## GitHub 安装
+See [Claude Code setup](https://code.claude.com/docs/en/setup). This plugin needs no extra Node/Python runtime or administrator access. GitHub installation requires networking and a Git environment available to the CLI; the ZIP provides a local marketplace. Respect organization restrictions on third-party plugins.
+
+## Install from GitHub
 
 ```powershell
 claude plugin marketplace add Gongkddz/claude-turn-notify
@@ -14,75 +16,75 @@ claude plugin install turn-notify@claude-turn-notify --scope user
 claude plugin list --json
 ```
 
-检查每步退出码和目标 scope、enabled 状态。默认 `user`；用户明确需要时选 `project` 或 `local`，后续保持一致。Project 会影响共享项目配置。
+Check each exit code and verify the requested scope and enabled state. Default to `user`; use `project` or `local` when requested, and keep later operations in the same scope. Project scope affects shared project configuration.
 
-## Release ZIP 安装
+## Install the release ZIP
 
-从 [Releases](https://github.com/Gongkddz/claude-turn-notify/releases/latest) 下载 ZIP 和 `SHA256SUMS.txt`。用 `Get-FileHash ./claude-turn-notify-1.0.0-windows.zip -Algorithm SHA256` 对照校验文件。**完整解压**，保留 `.claude-plugin` 和 `plugins`。
+Download the ZIP and `SHA256SUMS.txt` from [Releases](https://github.com/Gongkddz/claude-turn-notify/releases/latest). Compare `Get-FileHash ./claude-turn-notify-1.0.0-windows.zip -Algorithm SHA256` with the checksum list. **Extract everything**, including `.claude-plugin` and `plugins`.
 
-双击 `install.cmd`，或让 agent 在解压目录执行：
+Double-click `install.cmd`, or ask an agent to run this from the extracted root:
 
 ```powershell
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File ./install.ps1 -Source Local
 ```
 
-安装器将插件复制到 `%LOCALAPPDATA%\ClaudeTurnNotify\marketplace\<version>`，然后调用官方 CLI 注册并安装。安装后可以移除下载和解压目录。执行策略 Bypass 只作用于这次进程；脚本不更改系统策略，不手动覆盖 settings.json。
+The installer copies the plugin to `%LOCALAPPDATA%\ClaudeTurnNotify\marketplace\<version>`, then uses the official CLI to register and install it. You may remove the download and extraction folders afterward. ExecutionPolicy Bypass applies to that process only; the script does not change system policy or replace settings.json manually.
 
-参数：`-Source Auto|Local|GitHub`、`-Scope user|project|local`、`-CheckOnly`。Auto 在完整包内选 Local，单独脚本选 GitHub；CheckOnly 只检查系统与 CLI，不更改配置，也不验证可见通知。
+Options: `-Source Auto|Local|GitHub`, `-Scope user|project|local`, `-CheckOnly`. Auto selects Local inside a complete bundle and GitHub for a standalone script. CheckOnly checks the environment and CLI without changing settings or verifying desktop delivery.
 
-## 首次使用与验证
+## First use and verification
 
-开一个**新的 Claude Code 会话**。输入 `/turn-notify:status`；若为 off，输入 `/turn-notify:on`。用 `/turn-notify:test` 检查示例 Toast 和提示音，再正常完成一轮回答。测试命令本身回答结束时也可能触发正常 Stop 通知。
+Open a **new Claude Code session**. Run `/turn-notify:status`; if off, run `/turn-notify:on`. Use `/turn-notify:test` to check a sample toast and sound, then finish a normal conversation turn. The test command's own answer can also trigger the normal Stop notification.
 
-| Command | Purpose |
+| Command | Action |
 | --- | --- |
-| `/turn-notify:on` | 开启 |
-| `/turn-notify:off` | 静音 |
-| `/turn-notify:status` | 查看开关 |
-| `/turn-notify:test` | 开关开启时发送示例通知 |
-| `/turn-notify:help` | 使用与排障 |
+| `/turn-notify:on` | Enable |
+| `/turn-notify:off` | Mute |
+| `/turn-notify:status` | Read switch |
+| `/turn-notify:test` | Send a sample notification if enabled |
+| `/turn-notify:help` | Usage and troubleshooting |
 
-安装注册、脚本成功退出和“看到了通知”是不同结果。显示受 Windows 权限、勿扰模式/专注助手、音量及桌面会话影响。约 3 秒内连续 Stop 合并，同一时刻不同会话独立。
+Registration, successful process exit and visible delivery are distinct outcomes. Windows permissions, Do not disturb / Focus assist, volume and desktop availability affect presentation. Stop events within about three seconds merge per session; separate sessions remain independent.
 
-## 更新
+## Update
 
-GitHub 来源运行：
+For a GitHub source:
 
 ```powershell
 claude plugin marketplace update claude-turn-notify
 claude plugin update turn-notify@claude-turn-notify
 ```
 
-ZIP 来源先下载新版。若本地市场指向旧版目录，按下述步骤切换到新版。更新后开新会话。单纯 marketplace update 不会从 GitHub 下载本地 ZIP 来源的新文件。
+For a ZIP source, download the new version first. If the marketplace points at an older version's directory, switch it as described below. Open a new session after updating. A marketplace update alone does not download a new GitHub release for a local ZIP source.
 
-## 切换安装来源
+## Switch installation source
 
-用 `claude plugin marketplace list` 核对来源。若已经是所需来源，继续安装。若在 GitHub 与 ZIP 之间切换，或换到新版 ZIP 目录，先核对插件 scope，再运行：
+Use `claude plugin marketplace list` to inspect the current source. If it already matches, continue installation. To switch between GitHub and ZIP, or move to a newer ZIP directory, first check the installed plugin scope, then run:
 
 ```powershell
 claude plugin uninstall turn-notify@claude-turn-notify --scope user
 claude plugin marketplace remove claude-turn-notify
 ```
 
-然后运行目标来源的安装步骤。此操作只针对明确要切换的 `claude-turn-notify`。Project/local 安装匹配 scope；多个 scope 有安装时先逐一确认。安装器遇到同名来源冲突会报错，保留现有来源。
+Follow the desired source's installation steps. Only act on the intended `claude-turn-notify` source. Match project/local scopes; review each scope if more than one is installed. The installer reports same-name source conflicts and preserves the existing source.
 
-## 没有通知或声音
+## Missing notifications or sound
 
-- 检查新会话、插件 enabled、通知开关、Claude Code hooks 是否被禁用。
-- 检查 Windows「设置 → 系统 → 通知」和勿扰模式/专注助手；回退通知可能归属 Windows PowerShell。
-- 检查音量、输出设备和 `%WINDIR%\Media\Windows Notify System Generic.wav`。
-- 使用原生 Windows 桌面。WSL、SSH、服务进程或无交互桌面不适用。
-- 数据在 `~/.claude/turn-notify` 或 `CLAUDE_CONFIG_DIR/turn-notify`。`notify.log` 的 `sound-played-ok` 表示播放调用完成；`toast-submitted-ok` / `toast-submitted-fallback-ok` 表示 API 接受提交，不能证明用户看见或听见。`toast-error` / `worker-error` 记录失败。
-- `pending-*.txt` 留存最近的待处理摘要。摘要也可能出现在锁屏和通知历史中。日志只记录技术状态；分享信息时不要上传私人内容或完整会话记录。
+- Check the new session, enabled plugin, saved switch and whether Claude Code hooks are disabled.
+- Check Windows Settings → System → Notifications and Do not disturb / Focus assist. Fallback notifications may appear under Windows PowerShell.
+- Check volume, audio output and `%WINDIR%\Media\Windows Notify System Generic.wav`.
+- Use a native Windows desktop. WSL, SSH, service processes and noninteractive sessions are unsupported.
+- Data is in `~/.claude/turn-notify` or `CLAUDE_CONFIG_DIR/turn-notify`. In `notify.log`, `sound-played-ok` means the playback call completed; `toast-submitted-ok` / `toast-submitted-fallback-ok` means the API accepted submission. These do not prove the user saw or heard it. `toast-error` / `worker-error` records failure.
+- `pending-*.txt` retains recent previews. Previews may also appear on the lock screen and in notification history. Logs record technical events only; do not share private content or full transcripts.
 
-## 卸载
+## Uninstall
 
 ```powershell
 claude plugin uninstall turn-notify@claude-turn-notify --scope user
 ```
 
-若不再需要市场，可运行 `claude plugin marketplace remove claude-turn-notify`。开新会话停止加载旧 hook。通知开关、日志、pending 和本地 ZIP 市场不会自动清除，用户确认后可自行删除。
+If no longer needed, remove the marketplace with `claude plugin marketplace remove claude-turn-notify`. Open a new session to stop loading the old hook. The notification switch, logs, pending files and local ZIP marketplace are not automatically removed; delete them only when the user requests it.
 
-## 官方参考
+## Official references
 
 [Plugin marketplaces](https://code.claude.com/docs/en/plugin-marketplaces) · [Manifest reference](https://code.claude.com/docs/en/plugins-reference) · [Hooks reference](https://code.claude.com/docs/en/hooks)

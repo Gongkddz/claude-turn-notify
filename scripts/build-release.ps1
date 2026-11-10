@@ -11,7 +11,7 @@ New-Item -ItemType Directory -Path $dist -Force | Out-Null
 $archivePath = Join-Path $dist ("claude-turn-notify-$version-windows.zip")
 
 # Explicit public distribution inputs. Hidden manifest directories are required.
-$files = @('install.cmd', 'install.ps1', 'README.md', 'LICENSE', 'AGENTS.md', 'CLAUDE.md', 'llms.txt', 'CHANGELOG.md', 'CONTRIBUTING.md', 'SECURITY.md', 'THIRD_PARTY_NOTICES.md', '.claude-plugin/marketplace.json')
+$files = @('install.cmd', 'install.ps1', 'README.md', 'README.zh-CN.md', 'LICENSE', 'AGENTS.md', 'CLAUDE.md', 'llms.txt', 'CHANGELOG.md', 'CONTRIBUTING.md', 'SECURITY.md', 'THIRD_PARTY_NOTICES.md', '.claude-plugin/marketplace.json')
 foreach ($directory in @('plugins/turn-notify', 'docs')) {
     $files += Get-ChildItem -LiteralPath (Join-Path $root $directory) -Recurse -File -Force | ForEach-Object {
         $_.FullName.Substring($root.Length + 1).Replace('\', '/')

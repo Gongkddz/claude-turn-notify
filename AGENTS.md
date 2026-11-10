@@ -34,4 +34,4 @@ The hook uses Stop input's `last_assistant_message` or the current session's tra
 
 Read `CONTRIBUTING.md`. Synchronize plugin and marketplace versions. PowerShell scripts must be UTF-8 **with BOM** for Windows PowerShell 5.1. Preserve quoting for spaces/non-ASCII paths. Keep generated releases, private files, local checks and temporary files out of Git. Build with `scripts/build-release.ps1`; include manifests, commands, license and installer.
 
-Map: `llms.txt`. Operations: `docs/INSTALL.md`. Presentation: `README.md`, `docs/README.en.md`.
+Map: `llms.txt`. Operations: `docs/INSTALL.md`. Presentation: `README.md` (English default), `README.zh-CN.md` (Simplified Chinese). Installation guides: `docs/INSTALL.md` (English), `docs/INSTALL.zh-CN.md` (Simplified Chinese). Follow the user's preferred language when explaining installation and usage; do not impose a fixed language.
