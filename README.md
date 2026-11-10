@@ -2,7 +2,7 @@
 <p align="center"><img src="docs/assets/hero.svg" alt="turn-notify — Step away. Know when Claude is done." width="100%"></p>
 
 <p align="center">
-  <a href="https://github.com/Gongkddz/claude-turn-notify/releases/latest"><img alt="Latest release" src="https://img.shields.io/github/v/release/Gongkddz/claude-turn-notify?style=flat-square&color=38bda5&label=release"></a>
+  <a href="https://github.com/Gongkddz/claude-turn-notify/releases/latest"><img alt="Latest release v1.0.0" src="https://img.shields.io/badge/release-v1.0.0-38bda5?style=flat-square"></a>
   <a href="LICENSE"><img alt="MIT" src="https://img.shields.io/badge/license-MIT-8b98b5?style=flat-square"></a>
   <img alt="Windows 10 / 11" src="https://img.shields.io/badge/Windows-10%20%2F%2011-6aa9ff?style=flat-square">
   <img alt="Claude Code plugin" src="https://img.shields.io/badge/Claude_Code-plugin-d59a79?style=flat-square">
